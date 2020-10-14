@@ -1,0 +1,22 @@
+{
+    "debug_mode": "0",
+    "site_url": "/",
+    "contact_mail": "alexeytarutin@gmail.com",
+    "site_name": "ProjectName",
+    "domain": "101101.ru",
+    "mail_robot": "robot",
+    "default_template": "default",
+    "tpl_show_undef_vars": "0",
+    "db_name": "test",
+    "db_prefix": "db_",
+    "db_host": "localost",
+    "db_user": "user",
+    "db_password": "",
+    "backoffice_url": "back",
+    "clear_html": "1",
+    "cookie_lifetime": "31104000",
+    "admin_templates": "back",
+    "memcache_host": "localhost",
+    "memcache_port": "11211",
+    "memcache_global_prefix": "mc"
+}
