@@ -110,11 +110,11 @@ FileETag None
 
 	RewriteEngine on
 
-	#http -> https
-	#RewriteCond %{HTTPS} off
-	#RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
+	## http -> https
+	RewriteCond %{HTTPS} off
+	RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
 
-	# https -> http
+	## https -> http
 	#RewriteCond %{HTTPS} on
 	#RewriteRule (.*) http://%{SERVER_NAME}%{REQUEST_URI} [L,R]
 

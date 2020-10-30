@@ -9,7 +9,8 @@ $mail = new class
 	public $_attach = false;
 	public $_sendby = 'native';
 
-	function __construct() {
+	function __construct()
+    {
         if(isset($_GET['testmail'])) $this->test();
     }
 

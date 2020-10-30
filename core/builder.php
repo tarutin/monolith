@@ -21,7 +21,7 @@ $builder = new class
 			'cookie' => $_COOKIE,
 			'time' => time(),
 			'subdomain' => SUBDOMAIN,
-			'i' => ISADMIN ? $settings->get('site_url') . $tpl->_template_dir . '/assets' : null,
+			'i' => ISADMIN ? $settings->_site_url . $tpl->_template_dir . '/assets' : null,
 			'token' => TOKEN,
 		]));
 	}

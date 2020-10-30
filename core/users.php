@@ -15,7 +15,7 @@ $user = new class
 	var $_groupname = 'Unregistered';
 	var $_salt = 'bid7dmnlth';
 
-	function Users()
+	function __construct()
 	{
 		global $db, $settings, $tpl;
 
