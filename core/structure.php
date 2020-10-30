@@ -1,22 +1,16 @@
 <?php
 
-#
-# STRUCTURE module, v1.0
-#
-
-$structure = new Structure;
-
-class Structure
+$structure = new class
 {
-	var $_uri = '';
-	var $_modules = array();
-	var $_pages = array();
-	var $_page = array();
-	var $_table_structure = '';
-	var $_table_permission = '';
-	var $_deniedModules = array('geo', 'memcache', 'mail', 'core', 'tpl', 'builder', 'function', 'db', 'settings', 'template', 'users', 'auth', 'structure', 'trash', 'cache', 'error', 'browser');
+	public $_uri = '';
+	public $_modules = array();
+	public $_pages = array();
+	public $_page = array();
+	public $_table_structure = '';
+	public $_table_permission = '';
+	public $_deniedModules = array('geo', 'memcache', 'mail', 'core', 'tpl', 'builder', 'function', 'db', 'settings', 'template', 'users', 'auth', 'structure', 'trash', 'cache', 'error', 'browser');
 
-	function Structure()
+	function __construct()
 	{
 		global $user, $db, $tpl, $settings;
 
@@ -542,6 +536,4 @@ class Structure
 		@closedir($dh);
 		return implode('|', $_templates);
 	}
-}
-
-?>
+};

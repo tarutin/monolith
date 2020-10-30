@@ -2,7 +2,7 @@
 {include file='_header.tpl'}
 
     <section class='wrapper'>
-        Hello
+        Hello app.
     </section>
 
 {include file='_footer.tpl'}

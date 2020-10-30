@@ -10,7 +10,7 @@
 
 	function error2log($header, $description = '')
 	{
-		$_file = ROOT . 'core/error.log';
+		$_file = ROOT . 'core/log/error.log';
 		$_current = file_get_contents($_file);
 		$_current .= date('d.m.Y H:i:s') . " / {$header}: {$description}\n";
 		file_put_contents($_file, $_current);
@@ -18,7 +18,7 @@
 
 	function message2log($_message)
 	{
-		$_file = ROOT . 'core/message.log';
+		$_file = ROOT . 'core/log/message.log';
 		$_current = file_get_contents($_file);
 		$_current .= date('d.m.Y H:i:s') . " / {$_message}\n";
 		file_put_contents($_file, $_current);

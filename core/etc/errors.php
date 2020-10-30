@@ -58,4 +58,3 @@
 		return true;
 	}
 	if(!$settings->get('debug_mode')) set_error_handler('errorHandlerF');
-?>

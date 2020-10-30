@@ -1,12 +1,6 @@
 <?php
 
-#
-# USERS module, v1.0
-#
-
-$user = new Users;
-
-class Users
+$user = new class
 {
 	var $_users = array();
 	var $_groups = array();
@@ -342,4 +336,4 @@ class Users
 
 		die('old sessions cleared');
 	}
-}
+};

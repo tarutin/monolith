@@ -5,4 +5,4 @@
 
 	define('ROOT', str_replace('//', '/', $_SERVER['DOCUMENT_ROOT'] . '/'));
 
-	include_once(ROOT . 'core/core.class.php');
+	include_once(ROOT . 'core/core.php');

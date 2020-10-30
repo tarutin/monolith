@@ -1,12 +1,6 @@
 <?php
 
-#
-# TEMPLATE class, v1.0
-#
-
-$tpl = new Template;
-
-class Template
+$tpl = new class
 {
 	var $_vars = array();
 	var $_tpl_vars = array();
@@ -442,6 +436,4 @@ class Template
 		}
 		return $output;
 	}
-}
-
-?>
+};

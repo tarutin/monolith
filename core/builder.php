@@ -1,8 +1,6 @@
 <?php
 
-$builder = new Builder;
-
-class Builder
+$builder = new class
 {
 	function __construct()
 	{
@@ -153,7 +151,7 @@ class Builder
 			exit;
 		}
 	}
-}
+};
 
 
 function css($_files)

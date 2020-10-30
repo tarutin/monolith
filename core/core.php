@@ -9,7 +9,7 @@
 	if(function_exists('date_default_timezone_set')) date_default_timezone_set('Europe/Moscow');
 	setlocale(LC_COLLATE, 'ru_RU.UTF-8');
 	setlocale(LC_CTYPE, 'ru_RU.UTF-8');
-	ini_set('error_log', ROOT . 'core/error.log');
+	ini_set('error_log', ROOT . 'core/log/error.log');
 	header('Content-type: text/html; charset=utf-8');
 	mb_internal_encoding('UTF-8');
 	iconv_set_encoding('internal_encoding', 'UTF-8');
@@ -28,25 +28,25 @@
 	define('TOKEN', bin2hex(openssl_random_pseudo_bytes(16)));
 	define('ISTOKEN', true);
 
-	include_once(ROOT . 'core/function.class.php');
-	include_once(ROOT . 'core/settings.class.php');
+	include_once(ROOT . 'core/etc/functions.php');
+	include_once(ROOT . 'core/settings.php');
 
 	define('SUBDOMAIN', getSubdomain() ? getSubdomain() : null);
 	define('ADMINURL', $settings->get('backoffice_url'));
 	define('ISADMIN', ADMINURL == getUrl(0) ? 1 : 0);
 
-	include_once(ROOT . 'core/mail.class.php');
-	include_once(ROOT . 'core/error.class.php');
-	include_once(ROOT . 'core/db.class.php');
-	include_once(ROOT . 'core/memcache.class.php');
-	include_once(ROOT . 'core/template.class.php');
-	include_once(ROOT . 'core/users.class.php');
-	include_once(ROOT . 'core/structure.class.php');
-	include_once(ROOT . 'core/builder.class.php');
+	include_once(ROOT . 'core/mail.php');
+	include_once(ROOT . 'core/etc/errors.php');
+	include_once(ROOT . 'core/db.php');
+	include_once(ROOT . 'core/memcache.php');
+	include_once(ROOT . 'core/template.php');
+	include_once(ROOT . 'core/users.php');
+	include_once(ROOT . 'core/structure.php');
+	include_once(ROOT . 'core/builder.php');
 
 	if($builder->initialization()) {
 		foreach($builder->_module AS $_module) {
-			if($_module) include_once(ROOT . "core/{$_module}.class.php");
+			if($_module) include_once(ROOT . "core/{$_module}.php");
 		}
 	}
 

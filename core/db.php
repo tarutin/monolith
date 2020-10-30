@@ -1,32 +1,32 @@
 <?php
 
-$db = new Db;
-
-class Db
+$db = new class
 {
-	var $_link = 0;
-	var $_query = 0;
-	var $_fetchArray = [];
-	var $_queryList = [];
+	public $_link = 0;
+	private $_query = 0;
+	private $_fetchArray = [];
+	public $_queryList = [];
 
 	function __construct()
 	{
 		global $settings;
 
-		$this->_host = $settings->get('db_host');
-		$this->_name = $settings->get('db_name');
-		$this->_user = $settings->get('db_user');
-		$this->_pass = $settings->get('db_password');
-		$this->_prefix = $settings->get('db_prefix');
+		$this->_host = $settings->_db_host;
+		$this->_name = $settings->_db_name;
+		$this->_user = $settings->_db_user;
+		$this->_pass = $settings->_db_password;
+		$this->_prefix = $settings->_db_prefix;
 
 		$this->connect();
 	}
 
-	function connect()
+	private function connect()
 	{
 		if($this->_link == 0)
 		{
-			$this->_link = @mysqli_connect($this->_host, $this->_user, $this->_pass, $this->_name) OR error('Нет соеденения с БД', mysqli_error($this->_link));
+			$this->_link = @mysqli_connect($this->_host, $this->_user, $this->_pass, $this->_name);
+            if(!$this->_link) error('Нет соеденения с БД', $this->_host);
+            
 			$this->query("SET NAMES 'utf8'");
 			$this->query("SET CHARACTER SET 'utf8'");
 			$this->query("SET SESSION collation_connection = 'utf8_general_ci'");
@@ -36,12 +36,12 @@ class Db
 		}
 	}
 
-	function close()
+	public function close()
 	{
 		mysqli_close($this->_link);
 	}
 
-	function query($_str)
+	public function query($_str)
 	{
 		$this->_query = @mysqli_query($this->_link, $_str) OR error('Неверный запрос', $_str . '<br/><br/>' . mysqli_error($this->_link));
 		array_push($this->_queryList, $_str);
@@ -49,7 +49,7 @@ class Db
 		return $this->_query;
 	}
 
-	function tables()
+	private function tables()
 	{
         if($_res = $this->query("SHOW TABLES"))
         {
@@ -65,13 +65,13 @@ class Db
 		eval($_tables);
 	}
 
-	function status($_tbl)
+	public function status($_tbl)
 	{
 		$row = $this->find("SHOW TABLE STATUS LIKE '{$_tbl}'");
 		return ($row[Auto_increment] - 1);
 	}
 
-    function findAll($query)
+    public function findAll($query)
     {
         $result = [];
         if($res = $this->query($query))
@@ -87,7 +87,7 @@ class Db
         return $result;
     }
 
-    function findColumn($query)
+    public function findColumn($query)
     {
         $result = [];
 
@@ -104,33 +104,33 @@ class Db
         return $result;
     }
 
-    function free($_res)
+    private function free($_res)
     {
         return @mysqli_free_result($_res);
     }
 
-    function value($_query)
+    public function value($_query)
     {
         $data = $this->fetchArray($this->query($_query));
         return $data[0] ? $data[0] : null;
     }
 
-	function find($_str)
+	public function find($_str)
 	{
 		return $this->fetchAssoc($this->query($_str));
 	}
 
-	function num($_query)
+	public function num($_query)
 	{
 		return @mysqli_num_rows($this->query($_query));
 	}
 
-	function insert($_tbl, $_data)
+	public function insert($_tbl, $_data)
 	{
 		return $this->query("INSERT INTO {$_tbl} SET " . $this->compile($_data));
 	}
 
-	function compile($_data)
+	public function compile($_data)
 	{
 		$result = '';
 		foreach($_data AS $k => $v)
@@ -142,17 +142,17 @@ class Db
 		return substr($result, 0, -2);
 	}
 
-	function fetchArray($_query_id)
+	public function fetchArray($_query_id)
 	{
 		return @mysqli_fetch_array($_query_id);
 	}
 
-	function fetchAssoc($_query_id)
+	public function fetchAssoc($_query_id)
 	{
 		return @mysqli_fetch_assoc($_query_id);
 	}
 
-	function escape($_val)
+	public function escape($_val)
 	{
 		if(is_array($_val))
 		{
@@ -163,7 +163,7 @@ class Db
 		return $_val;
 	}
 
-}
+};
 
 function safe($_string)
 {

@@ -1,17 +1,11 @@
 <?php
 
-#
-# SETTINGS class, v1.0
-#
-
-$settings = new Settings;
-
-class Settings
+$settings = new class
 {
-	var $_config;
-	var $_configData = array();
+	public $_config;
+	public $_configData = [];
 
-	function Settings()
+	function __construct()
 	{
 		$this->_config = ROOT . 'core/config.inc';
 		$this->_configData = $this->getConfig();
@@ -29,7 +23,7 @@ class Settings
 		return !$keyword ? $this->_configData : $this->_configData[$keyword];
 	}
 
-	function getConfig()
+	public function getConfig()
 	{
 		$h = fopen($this->_config, 'r');
 		$_info = fread($h, filesize($this->_config));
@@ -75,6 +69,5 @@ class Settings
 		fwrite($_h, $_data);
 		fclose($_h);
 	}
-}
+};
 
-?>

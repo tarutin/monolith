@@ -1,20 +1,13 @@
 <?php
 
-#
-# MAIL module, v1.1
-#
-
-$mail = new Mail;
-
-class Mail
+$mail = new class
 {
-
-	var $_to = array();
-	var $_from = false;
-	var $_message = '';
-	var $_subject = '';
-	var $_attach = false;
-	var $_sendby = 'native';
+	public $_to = array();
+	public $_from = false;
+	public $_message = '';
+	public $_subject = '';
+	public $_attach = false;
+	public $_sendby = 'native';
 
 	function __construct() {
         if(isset($_GET['testmail'])) $this->test();
@@ -130,4 +123,4 @@ class Mail
 
 		die('SEND');
 	}
-}
+};

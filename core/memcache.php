@@ -1,12 +1,6 @@
 <?php
 
-/**
-* Класс для работы с Memcache
-*/
-
-$mcache = new CMemcache;
-
-class CMemcache
+$mcache = new class
 {
     public $host = 'localhost';
     public $port = 11211;
@@ -77,6 +71,4 @@ class CMemcache
         return $this->global_prefix . '_' . $key;
     }
 
-}
-
-?>
+};

@@ -1,12 +1,10 @@
 <?php
 
-$content = new Content;
-
-class Content
+$content = new class
 {
-	var $_contentSystemName = '';
-	var $_contentList = array();
-	var $_contentLines = array();
+	public $_contentSystemName = '';
+	public $_contentList = array();
+	public $_contentLines = array();
 
 	function __construct()
 	{
