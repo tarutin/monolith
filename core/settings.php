@@ -7,7 +7,7 @@ $settings = new class
 
 	function __construct()
 	{
-		$this->_config = ROOT . 'core/config.inc';
+		$this->_config = ROOT . 'core/etc/config.php';
 		$this->_configData = $this->getConfig();
 
         $_settings = '';
